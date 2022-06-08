@@ -85,9 +85,6 @@
     export function getTasks() {
         querySnapshot.forEach((doc) => {
             createCard(doc.id, doc.data());
-            //console.log(doc.id)
-            //console.log(doc.data)
-
         });
     }
     function generateRandomIdTask(num) {
@@ -109,34 +106,37 @@
         await deleteDoc(doc(db, "tasks", id));   
         alert("Borrada la tarea: "+id);
     }
-
+    let buttonInsert = document.getElementById("task-button");
+    const form = document.getElementById("task-form");
     function actualizar(task) {
-        titleOld = task.title;
-        //console.log(titleOld);
-        descriptionOld =  task.description;
-        //console.log(descriptionOld);
+        form["task-title"].value = task.title;
+        form["task-description"].value =  task.description;
+        buttonInsert.value = "Actualizar tarea"
+
     }
-    let titleOld;
-    let descriptionOld;
+
+
+
     //para actualizar
-    export async function updateTask(idi, taski){
+    let buttonInsertar = document.getElementById("")
+    export async function actualizarForm(idc) {
         querySnapshot.forEach((doc) => {
-            if (doc.id == idi) {
+            if (doc.id == idc) {
             actualizar(doc.data());
-             
-            
-            //console.log(doc.id)
-            //console.log(doc.data)
+            buttonInsert.name = idc;
+
             }
         });
-        const task2 = {
-            title: titleOld + " " + taski.title,
-            description: descriptionOld + " " + taski.description
-        }
-        console.log(taski)
-        await updateDoc(doc(db, "tasks", idi), task2); 
+        
+    }
+
+
+
+    export async function updateTask(idi, taski){
+
+        await updateDoc(doc(db, "tasks", idi), taski); 
           
-        //alert("Actualizada la tarea: "+id);
+        alert("Actualizada la tarea: "+idi);
         location.reload();
     }
 

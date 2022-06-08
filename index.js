@@ -1,61 +1,57 @@
 
-    //Me traigo mi db firestore
-    import { getTasks, insertTask, deleteTask, updateTask} from "./utils.js";
-    //console.log(db);
-    //Extraigo todos los documentos de tasks y creo tarjetas con ellos
-    getTasks();
+//Me traigo mi db firestore
+import { getTasks, insertTask, deleteTask, updateTask, actualizarForm } from "./utils.js";
+//console.log(db);
+//Extraigo todos los documentos de tasks y creo tarjetas con ellos
+getTasks();
+let buttonInsert = document.getElementById("task-button");
 
+//Obtenemos el form y capturamos el submit
+const form = document.getElementById("task-form");
+form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (buttonInsert.value == "Actualizar tarea") {
 
-    //Obtenemos el form y capturamos el submit
-    const form = document.getElementById("task-form");
-    form.addEventListener("submit", e => {
-        e.preventDefault();
+        //console.log("Se tiene que actualizar")
+           
+                const task = {
+                    title: form["task-title"].value,
+                    description: form["task-description"].value
+                }
+                updateTask(buttonInsert.name, task);
+
+    }
+    if (buttonInsert.value == "Enviar Tarea") {
+        //console.log("Se tiene que crear")
         const task = {
             title: form["task-title"].value,
             description: form["task-description"].value
         }
-
+    
         insertTask(task);
+    }
+
+
+})
+
+
+const buttonsCardD = document.getElementsByName("delete");
+//console.log(buttonsCardD)
+buttonsCardD.forEach(element => {
+    element.addEventListener("click", () => {
+        var divDelete = element.parentNode.parentNode;
+        document.body.removeChild(divDelete);
+
+        deleteTask(element.id);
     })
+});
 
 
-    const buttonsCardD = document.getElementsByName("delete");
-    //console.log(buttonsCardD)
-    buttonsCardD.forEach(element => {
-        element.addEventListener("click",  () => {
-            var divDelete = element.parentNode.parentNode;
-            document.body.removeChild(divDelete);
-            //console.log("Estoy borrando la tarea: "+element.id);
-            deleteTask(element.id);
-        })
-    });
+//para colocar en el formulario los datos antiguos
+const buttonsCardA = document.getElementsByName("update");
+buttonsCardA.forEach(element => {
+    element.addEventListener("click", () => {
 
- 
-
-
-    const buttonsCardA = document.getElementsByName("update");
-    //console.log(buttonsCardA)
-    buttonsCardA.forEach(element => {
-        element.addEventListener("click",  () => {
-            
-            //title = document
-            //descripcion =
-            const task = {
-                title: form["task-title"].value,
-                description: form["task-description"].value
-            } 
-            //console.log(task);
-            //updateTask(task, id);
-            updateTask(element.id, task);
-        })
-    });
-
-
-
-
-    //Crear botton actualizar
-    //Insertar funcion de actualizar las tareas
-    //parecido al insert y delete
-    //https://firebase.google.com/docs/firestore/manage-data/add-data
-
-    //agregar botton de actualizacion al lado de borrar, llevarse los datos introducidos y actualizar la tarrea
+        actualizarForm(element.id);
+    })
+});
