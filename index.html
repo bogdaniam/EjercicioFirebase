@@ -1,38 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
 
-    <!DOCTYPE html>
-    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Firebase</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css"
+        integrity="sha384-L7+YG8QLqGvxQGffJ6utDKFwmGwtLcCjtwvonVZR/Ba2VzhpMwBz51GaXnUsuYbj" crossorigin="anonymous">
+</head>
 
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>CRUD Firebase</title>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css"
-                integrity="sha384-L7+YG8QLqGvxQGffJ6utDKFwmGwtLcCjtwvonVZR/Ba2VzhpMwBz51GaXnUsuYbj" crossorigin="anonymous">
-        </head>
+<body>
+    <div class="card text-white bg-info mb-6  offset-md-4" style="max-width: 20rem;">
+        <div class="card-header">Formulario Tareas</div>
+        <div class="card-body">
+            <form id="task-form">
+                <input type="text" id="task-title" class="form-control" placeholder="Título de la tarea" autofocus>
+                <textarea id="task-description" class="form-control" placeholder="Descripción de la tarea" cols="10"
+                    rows="5"></textarea>
+                <br>
 
-        <body>
-            <div class="card text-white bg-info mb-6  offset-md-4" style="max-width: 20rem;">
-                <div class="card-header">Formulario Tareas</div>
-                <div class="card-body">
-                    <form id="task-form">
-                        <input type="text" id="task-title" class="form-control" placeholder="Título de la tarea"
-                            autofocus>
-                        <textarea id="task-description" class="form-control" placeholder="Descripción de la tarea" cols="10"
-                            rows="5"></textarea>
-                        <br>
+                <input type="submit" value="Enviar Tarea" class="btn btn-lg btn-primary" id="task-button">
 
-                        <input type="submit" value="Enviar Tarea" class="btn btn-lg btn-primary" id="task-button">
+            </form>
 
-                    </form>
+        </div>
 
-                </div>
-            </div>
-            <br>
+    </div>
+    <br>
+    <div id="textytarea">
+
+
+        <div id="tareas" class="flex-column ">
             <h3>Listado de tareas existente</h3>
 
-            <script src="utils.js" type="module" defer></script>
-            <script src="index.js" type="module" defer></script>
-        </body>
+        </div>
 
-    </html>
+        <div id="text" class="flex-column ">
+            <h3>Funcionamiento de la aplicacion:</h3>
+            <p class="font-weight-bold"> Añadir tareas: </p>
+            <p>En el "Formulario tareas", se debe introducir el titulo de la tarea y la descripcion, despues vamos a
+                pulsar en el boton <b>"Enviar Tarea"</b>.</p>
+                <br>
+            <p class="font-weight-bold">  Borrar tareas: </p>
+            <p>En el listado de las tareas, pulsamos el botton <b>"Borrar Tarea"</b>  de la tarea que queremos borrar</p>
+            <br>
+            <p class="font-weight-bold"> Actualizar tareas: </p>
+            <p>En el listado de la tareas, vamos a pulsar sobre el boton de <b>"Cargar tarea"</b> para cargar la informacion de la tarea en el formulario azul. Ahora podemos modificar el titulo y la descripcion de la tarea. Una vez que estamos
+                conformes con las modificacines, vamos a pulsar en el boton <b>"Actualizar tarea"</b> </p>
+
+        </div>
+    </div>
+
+    <br>
+
+
+    <script src="utils.js" type="module" defer></script>
+    <script src="index.js" type="module" defer></script>
+</body>
+
+</html>

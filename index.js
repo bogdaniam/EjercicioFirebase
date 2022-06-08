@@ -4,34 +4,36 @@ import { getTasks, insertTask, deleteTask, updateTask, actualizarForm } from "./
 //console.log(db);
 //Extraigo todos los documentos de tasks y creo tarjetas con ellos
 getTasks();
+
 let buttonInsert = document.getElementById("task-button");
 
+
 //Obtenemos el form y capturamos el submit
+//Al pulsar el boton del formulario, se comprueba el valor de dicho boton
 const form = document.getElementById("task-form");
 form.addEventListener("submit", e => {
     e.preventDefault();
-    if (buttonInsert.value == "Actualizar tarea") {
 
+    //se realiza la funcion de actualizar
+    if (buttonInsert.value == "Actualizar tarea") {
         //console.log("Se tiene que actualizar")
-           
                 const task = {
                     title: form["task-title"].value,
                     description: form["task-description"].value
                 }
                 updateTask(buttonInsert.name, task);
-
     }
+
+
+    //se realiza la funcion de crear tarea
     if (buttonInsert.value == "Enviar Tarea") {
         //console.log("Se tiene que crear")
         const task = {
             title: form["task-title"].value,
             description: form["task-description"].value
         }
-    
         insertTask(task);
     }
-
-
 })
 
 
@@ -40,18 +42,18 @@ const buttonsCardD = document.getElementsByName("delete");
 buttonsCardD.forEach(element => {
     element.addEventListener("click", () => {
         var divDelete = element.parentNode.parentNode;
-        document.body.removeChild(divDelete);
+        var padre = document.getElementById("tareas")
+        padre.removeChild(divDelete);
 
         deleteTask(element.id);
     })
 });
 
 
-//para colocar en el formulario los datos antiguos
+//cuando queremos actualizar una tarea, se cargan los tados antiguos en el formulario
 const buttonsCardA = document.getElementsByName("update");
 buttonsCardA.forEach(element => {
     element.addEventListener("click", () => {
-
         actualizarForm(element.id);
     })
 });
